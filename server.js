@@ -22,6 +22,7 @@ const mediaRoutes = require('./routes/mediaRoutes');
 const userRoutes = require('./routes/userRoutes');
 const userProfileRoutes = require('./routes/userProfileRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const connectDB = require('./config/db');
 
 require('./config/passport'); // Passport config
 
