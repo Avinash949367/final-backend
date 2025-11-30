@@ -83,6 +83,11 @@ app.use('/api/users', userRoutes);
 app.use('/api/user-profile', userProfileRoutes);
 app.use('/api/contact', contactRoutes);
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to ParkPro Backend API', status: 'Running' });
+});
+
 // Health check route
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
