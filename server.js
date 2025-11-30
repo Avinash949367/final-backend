@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 // AI chat proxy route (after body parsing middleware)
 app.post('/api/chat', async (req, res) => {
   try {
-    const response = await fetch('http://localhost:8000/chat', {
+    const response = await fetch('https://final-ai-backend.onrender.com/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
