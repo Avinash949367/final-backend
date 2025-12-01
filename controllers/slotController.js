@@ -67,7 +67,7 @@ exports.getSlotsByStation = async (req, res) => {
         }
 
         // Query slots by station._id
-        const slots = await Slot.find({ stationId: station._id.toString() }).sort({ createdAt: -1 });
+        const slots = await Slot.find({ stationId: station._id }).sort({ createdAt: -1 });
         res.status(200).json(slots);
     } catch (error) {
         res.status(500).json({ message: error.message });

@@ -47,8 +47,21 @@ app.post('/api/chat', async (req, res) => {
       },
       body: JSON.stringify(req.body)
     });
-    const data = await response.json();
-    res.status(response.status).json(data);
+
+    // Check if response is JSON
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      const data = await response.json();
+      res.status(response.status).json(data);
+    } else {
+      // Handle non-JSON responses (like HTML error pages)
+      const text = await response.text();
+      console.error('AI service returned non-JSON response:', text.substring(0, 200));
+      res.status(500).json({
+        error: 'AI service unavailable',
+        details: 'AI service returned invalid response format'
+      });
+    }
   } catch (error) {
     console.error('AI service proxy error:', error);
     res.status(500).json({ error: 'AI service unavailable' });
